@@ -21,19 +21,25 @@ const ListServices = () => {
   const [services, setServices] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-
-  useEffect(() => {
-    fetchServices();
-  }, [page, rowsPerPage]);
+  const [loading, setLoading] = useState(true);
 
   const fetchServices = async () => {
+    setLoading(true);
+    const token = localStorage.getItem("token");
     try {
-      const response = await listAllServices();
+      const response = await listAllServices(token);
       setServices(response.data);
     } catch (error) {
       console.error("Error fetching services:", error);
+      setLoading(false);
     }
   };
+
+  useEffect(() => {
+
+    fetchServices();
+  }, [page, rowsPerPage]);
+
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -45,8 +51,10 @@ const ListServices = () => {
   };
 
   const handleDelete = async (serviceId) => {
+    const token = localStorage.getItem("token");
     try {
-      await deleteService(serviceId);
+      await deleteService(serviceId, token);
+      setServices(services.filter((service) => service._id !== serviceId));
       fetchServices();
     } catch (error) {
       console.error("Error deleting service:", error);
@@ -107,7 +115,7 @@ const ListServices = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {services
+                  { !loading ? (services
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((service) => (
                       <TableRow key={service._id}>
@@ -133,7 +141,13 @@ const ListServices = () => {
                           </IconButton>
                         </TableCell>
                       </TableRow>
-                    ))}
+                    ))) : (
+                        <TableRow>
+                          <TableCell colSpan={5} align="center">
+                            Loading...
+                          </TableCell>
+                        </TableRow>
+                      )}
                 </TableBody>
               </Table>
             </TableContainer>

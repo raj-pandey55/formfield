@@ -45,11 +45,11 @@ const Sidebar = () => {
           </ListItemIcon>
           <ListItemText primary="Products" />
         </ListItem>
-        <ListItem button component={Link} to="/activities">
+        <ListItem button component={Link} to="/event">
           <ListItemIcon>
             <AssignmentIcon />
           </ListItemIcon>
-          <ListItemText primary="Activities" />
+          <ListItemText primary="Events" />
         </ListItem>
       </List>
     </Drawer>

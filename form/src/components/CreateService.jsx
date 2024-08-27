@@ -16,7 +16,7 @@ const CreateService = () => {
     providerAddress: '',
     priceOriginal: '',
     priceDiscount: '',
-    priceTax: 0,
+    priceTax: 8,
     rating: 0,
     noOfLikes: 0,
     noOfReviews: 0,
@@ -37,9 +37,9 @@ const CreateService = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    const token = localStorage.getItem('token');
     try {
-      await createService(formData.storeId, formData);
+      await createService(formData.storeId, formData, token);
       navigate('/');
     } catch (error) {
       console.error('Error creating service:', error);
