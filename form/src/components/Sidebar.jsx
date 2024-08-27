@@ -39,7 +39,7 @@ const Sidebar = () => {
           </ListItemIcon>
           <ListItemText primary="Services" />
         </ListItem>
-        <ListItem button component={Link} to="/products">
+        <ListItem button component={Link} to="/product">
           <ListItemIcon>
             <ShoppingCartIcon />
           </ListItemIcon>
