@@ -1,7 +1,7 @@
 // src/components/CreateProduct.jsx
 import React, { useState } from 'react';
 import { createProduct } from '../api/api'; 
-import { TextField, Button, Checkbox, Grid2, Box, Typography } from '@mui/material';
+import { TextField, Button, Checkbox, Grid2, Box, Typography, Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 
@@ -62,7 +62,7 @@ const CreateProduct = () => {
       <Box sx={{ mt: 3, flex: 1 }}>
         <Typography variant="h4">Create New Product</Typography>
         <form onSubmit={handleSubmit}>
-          <Grid2 container spacing={2}>
+          <Stack container spacing={2}>
             {/* Name */}
             <Grid2 item xs={12}>
               <TextField
@@ -80,6 +80,7 @@ const CreateProduct = () => {
               <TextField
                 label="Store ID"
                 name="storeId"
+                select
                 fullWidth
                 required
                 value={formData.storeId}
@@ -351,7 +352,7 @@ const CreateProduct = () => {
                 Submit
               </Button>
             </Grid2>
-          </Grid2>
+          </Stack>
         </form>
       </Box>
     </Box>

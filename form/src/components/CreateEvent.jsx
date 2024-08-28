@@ -1,7 +1,7 @@
 // src/components/CreateEvent.jsx
 import React, { useState } from 'react';
 import { createEvent } from '../api/api'; // Import your API function
-import { TextField, Button, Checkbox, Grid2, Box, Typography } from '@mui/material';
+import { TextField, Button, Checkbox, Grid2, Box, Typography, Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 
@@ -53,7 +53,7 @@ const CreateEvent = () => {
     const token = localStorage.getItem('token');
     try {
       await createEvent(formData, token);
-      navigate('/event');
+      navigate('/event')
     } catch (error) {
       console.error('Error creating event:', error);
     }
@@ -65,7 +65,7 @@ const CreateEvent = () => {
       <Box sx={{ mt: 3, ml: 3, flexGrow: 1 }}>
         <Typography variant="h4">Create New Event</Typography>
         <form onSubmit={handleSubmit}>
-          <Grid2 container spacing={2}>
+          <Stack container spacing={2}>
             {/* Name */}
             <Grid2 item xs={12}>
               <TextField
@@ -83,6 +83,7 @@ const CreateEvent = () => {
               <TextField
                 label="Store ID"
                 name="storeId"
+                select
                 fullWidth
                 required
                 value={formData.storeId}
@@ -406,7 +407,7 @@ const CreateEvent = () => {
                 Submit
               </Button>
             </Grid2>
-          </Grid2>
+          </Stack>
         </form>
       </Box>
     </Box>
