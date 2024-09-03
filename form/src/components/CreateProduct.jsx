@@ -439,6 +439,7 @@ const CreateProduct = () => {
                     label="Attribute"
                     name={`variants[${index}].attribute`}
                     fullWidth
+                    required
                     value={variant.attribute}
                     onChange={(e) =>
                       handleNestedArrayChangeVariant(
@@ -457,6 +458,8 @@ const CreateProduct = () => {
                         <TextField
                           label={`Value ${valueIndex + 1}`}
                           value={value}
+                          required
+                          fullWidth
                           onChange={(e) =>
                             handleVariantValueChange(
                               index,
@@ -743,6 +746,7 @@ const CreateProduct = () => {
                         label={`Image ${index + 1}`}
                         value={image}
                         fullWidth
+                        required
                         onChange={(e) =>
                           handleNestedArrayChange(
                             "url",

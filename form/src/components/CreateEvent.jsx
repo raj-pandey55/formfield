@@ -514,6 +514,7 @@ const CreateEvent = () => {
                         label={`Image ${index + 1}`}
                         value={image}
                         fullWidth
+                        required
                         onChange={(e) =>
                           handleNestedArrayChange(
                             "url",
@@ -629,7 +630,7 @@ const CreateEvent = () => {
                 </Grid2>
               </Grid2>
             ))}
-            <Button onClick={() => handleArrayAdd("slotsAvailable")}>
+            <Button variant="outlined" onClick={() => handleArrayAdd("slotsAvailable")}>
               Add Slot
             </Button>
 
