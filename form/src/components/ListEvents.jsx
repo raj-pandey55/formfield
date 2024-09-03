@@ -28,7 +28,7 @@ const ListEvents = () => {
     const token = localStorage.getItem("token"); // Retrieve token from local storage
     try {
       const data = await getAllEvents(token); // Pass token to get all events function
-      setEvents(data);
+      setEvents(data.result);
     } catch (error) {
       console.error("Error fetching events:", error);
     } finally {

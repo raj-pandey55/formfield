@@ -29,7 +29,7 @@ const ListProducts = () => {
     const token = localStorage.getItem("token"); // Retrieve token from local storage
     try {
       const data = await listAllProducts(token); // Pass token to get all products function
-      setProducts(data);
+      setProducts(data.result);
     } catch (error) {
       console.error("Error fetching products:", error);
     } finally {

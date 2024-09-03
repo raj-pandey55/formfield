@@ -28,15 +28,14 @@ const ListServices = () => {
     const token = localStorage.getItem("token");
     try {
       const response = await listAllServices(token);
-      setServices(response.data);
+      setServices(response.result);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching services:", error);
-      setLoading(false);
     }
   };
 
   useEffect(() => {
-
     fetchServices();
   }, [page, rowsPerPage]);
 
@@ -124,11 +123,11 @@ const ListServices = () => {
                         <TableCell>{service.providerAddress}</TableCell>
                         <TableCell>
                           <a
-                            href={service.url}
+                            href={service.url.images[0]}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            {service.url}
+                            {service.url.images[0]}
                           </a>
                         </TableCell>
                         <TableCell>${service.price?.original}</TableCell>
@@ -152,7 +151,7 @@ const ListServices = () => {
               </Table>
             </TableContainer>
             <TablePagination
-              rowsPerPageOptions={[10, 25, 50]}
+              rowsPerPageOptions={[5, 10, 25]}
               component="div"
               count={services.length}
               rowsPerPage={rowsPerPage}
