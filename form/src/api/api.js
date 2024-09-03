@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000/api"; // Update with your API base URL
+const BASE_URL = "http://localhost:3000/api"; // Update with your API base URL
 
 // Function to create a new service
 export const createService = async (storeId, serviceData, token) => {
@@ -22,14 +22,18 @@ export const createService = async (storeId, serviceData, token) => {
 };
 
 // Function to list all services
-export const listAllServices = async (token) => {
+export const listAllServices = async () => {
   try {
-    const response = await axios.post(`${BASE_URL}/service`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.get(`${BASE_URL}/service/search`
+    // , 
+    // {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // }
+  );
     return response.data;
+    // console.log(response.data);
   } catch (error) {
     console.error("Failed to list services:", error);
     throw error;
@@ -54,11 +58,13 @@ export const deleteService = async (serviceId, token) => {
 // Function to create a new event
 export const createEvent = async (eventData, token) => {
   try {
-    const response = await axios.post(`${BASE_URL}/event`, eventData, {
+    const response = await axios.post(`${BASE_URL}/event`, eventData
+    , {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    });
+    }
+  );
     return response.data;
   } catch (error) {
     console.error(
@@ -72,11 +78,13 @@ export const createEvent = async (eventData, token) => {
 // Function to get all events
 export const getAllEvents = async (token) => {
   try {
-    const response = await axios.get(`${BASE_URL}/event`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.get(`${BASE_URL}/event/search`
+    // , {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // }
+  );
 
     return response.data;
   } catch (error) {
@@ -125,11 +133,13 @@ export const createProduct = async (storeId, productData, token) => {
 // Function to list all products
 export const listAllProducts = async (token) => {
   try {
-    const response = await axios.get(`${BASE_URL}/product`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.get(`${BASE_URL}/product/search`
+    // , {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // }
+  );
     return response.data;
   } catch (error) {
     console.error("Failed to list products:", error);
@@ -151,5 +161,8 @@ export const deleteProduct = async (productId, token) => {
     throw error;
   }
 };
+
+// // Function to get all stores
+// export const getAllStores = async ()
 
 
