@@ -116,39 +116,30 @@ const CreateProduct = () => {
 
   const handleNestedArrayChange = (field, index, subfield, value) => {
     setFormData((prevState) => {
-      // Create a copy of the current `info` object
       const updatedInfo = { ...prevState[field] };
 
-      // Update the specific highlight at the given index
       updatedInfo[subfield][index] = value;
 
-      // Return the updated state with the modified `info` object
       return { ...prevState, [field]: updatedInfo };
     });
   };
 
   const handleNestedArrayAdd = (field, subfield) => {
     setFormData((prevState) => {
-      // Create a copy of the current `info` object
       const updatedInfo = { ...prevState[field] };
 
-      // Add a new empty string to the `highlights` array
       updatedInfo[subfield].push("");
 
-      // Return the updated state with the modified `info` object
       return { ...prevState, [field]: updatedInfo };
     });
   };
 
   const handleNestedArrayRemove = (field, subfield, index) => {
     setFormData((prevState) => {
-      // Create a copy of the current `info` object
       const updatedInfo = { ...prevState[field] };
 
-      // Remove the element at the specified index from the `highlights` array
       updatedInfo[subfield].splice(index, 1);
 
-      // Return the updated state with the modified `info` object
       return { ...prevState, [field]: updatedInfo };
     });
   };
@@ -263,6 +254,7 @@ const CreateProduct = () => {
                     label={`Offer ${index + 1}`}
                     value={offer}
                     fullWidth
+                    select
                     onChange={(e) =>
                       handleArrayChange("offers", index, e.target.value)
                     }
@@ -279,32 +271,6 @@ const CreateProduct = () => {
             ))}
             <Button variant="outlined" onClick={() => handleArrayAdd("offers")}>
               Add Offer
-            </Button>
-
-            <p>Likes</p>
-            {formData.likes.map((like, index) => (
-              <Grid2 key={index} container spacing={2}>
-                <Grid2 item size="grow">
-                  <TextField
-                    label={`Like ${index + 1}`}
-                    value={like}
-                    fullWidth
-                    onChange={(e) =>
-                      handleArrayChange("likes", index, e.target.value)
-                    }
-                  />
-                </Grid2>
-                <Button
-                  variant="outlined"
-                  color="error"
-                  onClick={() => handleArrayRemove("likes", index)}
-                >
-                  Remove Like
-                </Button>
-              </Grid2>
-            ))}
-            <Button variant="outlined" onClick={() => handleArrayAdd("likes")}>
-              Add Like
             </Button>
 
             <p>Tags</p>
@@ -807,7 +773,7 @@ const CreateProduct = () => {
                   Add Image
                 </Button>
               </Grid2>
-              <Grid2 item size="grow">
+              {/* <Grid2 item size="grow">
                 <p>Document</p>
                 {formData.url.documents.map((document, index) => (
                   <Grid2 container spacing={2} key={index}>
@@ -845,7 +811,7 @@ const CreateProduct = () => {
                 >
                   Add Document
                 </Button>
-              </Grid2>
+              </Grid2> */}
             </Grid2>
 
             <p>Detailed Images</p>
